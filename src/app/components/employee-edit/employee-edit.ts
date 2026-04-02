@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { EmployeeService } from '../../services/employee.service';
 
 @Component({
   selector: 'app-employee-edit',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './employee-edit.html',
   styleUrl: './employee-edit.css',
 })
-export class EmployeeEdit {}
+export class EmployeeEdit {
+  employee = inject(EmployeeService);
+}
