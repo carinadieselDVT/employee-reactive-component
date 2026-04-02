@@ -40,9 +40,9 @@ export class EmployeeEdit implements OnInit {
 
   private createExperienceGroup(xp: Experience): FormGroup {
     return this.fb.group({
-      company: [xp.company],
-      role: [xp.role],
-      years: [xp.years],
+      company: [xp.company, Validators.required],
+      role: [xp.role, Validators.required],
+      years: [xp.years, [Validators.required, Validators.min(1)]],
     });
   }
 

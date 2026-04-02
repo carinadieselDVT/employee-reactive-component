@@ -32,8 +32,27 @@
       @for (exp of experiencesArray.controls; track exp; let i = $index) {
         <div [formGroupName]="i">
           <input type="text" formControlName="company" />
+          @if (
+            experiencesArray.at(i).get('company')?.hasError('required') &&
+            experiencesArray.at(i).get('company')?.touched
+          ) {
+            <span class="error">Company is required</span>
+          }
+
           <input type="text" formControlName="role" />
+          @if (
+            experiencesArray.at(i).get('role')?.hasError('required') &&
+            experiencesArray.at(i).get('role')?.touched
+          ) {
+            <span class="error">Role is required</span>
+          }
           <input type="number" formControlName="years" />
+          @if (
+            experiencesArray.at(i).get('years')?.hasError('min') &&
+            experiencesArray.at(i).get('years')?.touched
+          ) {
+            <span class="error">Minimum 1 year of experience required</span>
+          }
         </div>
       }
     </div>
