@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { DEPARTMENTS, AVAILABLE_SKILLS } from '../../models/skills.constants';
 import { Experience } from '../../models/employee.model';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-edit',
@@ -27,9 +28,9 @@ export class EmployeeEdit implements OnInit {
 
   private buildForm() {
     this.employeeForm = this.fb.group({
-      id: new FormControl(''),
+      id: new FormControl('', Validators.required),
       name: new FormControl(''),
-      email: new FormControl(''),
+      email: new FormControl('', Validators.required),
       department: new FormControl(''),
       isActive: new FormControl(''),
       skills: this.fb.array(this.skills.map(() => new FormControl(false))),

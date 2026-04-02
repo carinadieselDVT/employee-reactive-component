@@ -3,12 +3,18 @@
   @defer {
     <label>
       <input type="text" formControlName="name" />
+      @if (employeeForm.get('name')?.hasError('required') && employeeForm.get('name')?.touched) {
+        <span class="error">Name is required</span>
+      }
     </label>
     <label>
-      <input type="email" formControlName="email" readonly />
+      <input type="email" formControlName="email" />
+      @if (employeeForm.get('email')?.hasError('required') && employeeForm.get('email')?.touched) {
+        <span class="error">Email is required</span>
+      }
     </label>
     <label for="department">Choose a department:</label>
-    <select name="department" readonly formControlName="department">
+    <select name="department" formControlName="department">
       @for (department of departments; track department) {
         <option [value]="department">{{ department }}</option>
       }
