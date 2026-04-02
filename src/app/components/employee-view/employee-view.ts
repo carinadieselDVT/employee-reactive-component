@@ -6,9 +6,9 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { DEPARTMENTS, AVAILABLE_SKILLS } from '../../../models/skills.constants';
-import { EmployeeService } from '../../../services/employee.service';
-import { Experience } from '../../../models/employee.model';
+import { DEPARTMENTS, AVAILABLE_SKILLS } from '../../models/skills.constants';
+import { EmployeeService } from '../../services/employee.service';
+import { Experience } from '../../models/employee.model';
 
 @Component({
   selector: 'app-employee-view',
