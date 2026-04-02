@@ -46,7 +46,7 @@ export class EmployeeService {
   getEmployee(id: number): Observable<Employee> {
     console.log(`[EmployeeService] GET /api/employees/${id} (mocked)`);
     return of({ ...this.mockEmployee, experiences: [...this.mockEmployee.experiences] }).pipe(
-      delay(600)
+      delay(600),
     );
   }
 
@@ -62,7 +62,7 @@ export class EmployeeService {
     this.mockEmployee = { ...employee };
     return of({ ...this.mockEmployee }).pipe(
       delay(400),
-      tap(() => console.log('[EmployeeService] Save successful'))
+      tap(() => console.log('[EmployeeService] Save successful')),
     );
   }
 }

@@ -1,0 +1,8 @@
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+  align-items: center;
+  justify-content: center;
+}
