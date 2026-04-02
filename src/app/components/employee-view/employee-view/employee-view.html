@@ -1,0 +1,41 @@
+<form class="employee-form" [formGroup]="employeeForm">
+  <h2>View Employee Details</h2>
+  @defer {
+    <label>
+      <input type="text" formControlName="name" readonly />
+    </label>
+    <label>
+      <input type="email" formControlName="email" readonly />
+    </label>
+    <label for="department">Choose a department:</label>
+    <select name="department" readonly formControlName="department">
+      @for (department of departments; track department) {
+        <option [value]="department">{{ department }}</option>
+      }
+    </select>
+    <div formArrayName="experiences">
+      @for (exp of experiencesArray.controls; track exp; let i = $index) {
+        <div [formGroupName]="i">
+          <input type="text" formControlName="company" />
+          <input type="text" formControlName="role" />
+          <input type="number" formControlName="years" />
+        </div>
+      }
+    </div>
+    <div formArrayName="experiences">
+      @for (exp of experiencesArray.controls; track exp; let i = $index) {
+        <div [formGroupName]="i">
+          <input type="text" formControlName="company" />
+          <input type="text" formControlName="role" />
+          <input type="number" formControlName="years" />
+        </div>
+      }
+    </div>
+  } @loading (after 100ms; minimum 1s) {
+    <p>Loading ... Please wait</p>
+  } @placeholder {
+    <p>Form placeholder</p>
+  } @error {
+    <p>Failed to load component.</p>
+  }
+</form>

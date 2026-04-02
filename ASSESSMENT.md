@@ -23,7 +23,7 @@ Build an **Employee Profile** feature with two views:
 
 ### Requirements
 
-- Inject `EmployeeService` and call `getEmployee(1)` on init.
+- Inject `EmployeeService` and call `getEmployee(1)` on init. 
 - Build a **reactive form** that mirrors the employee data structure.
 - All form controls must be **disabled** (read-only display).
 - The form must include:
