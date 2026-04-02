@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { DEPARTMENTS, AVAILABLE_SKILLS } from '../../models/skills.constants';
-import { Experience } from '../../models/employee.model';
+import { Employee, Experience } from '../../models/employee.model';
 import { Validators } from '@angular/forms';
 
 @Component({
@@ -28,8 +28,8 @@ export class EmployeeEdit implements OnInit {
 
   private buildForm() {
     this.employeeForm = this.fb.group({
-      id: new FormControl('', Validators.required),
-      name: new FormControl(''),
+      id: new FormControl(''),
+      name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       department: new FormControl(''),
       isActive: new FormControl(''),
@@ -44,6 +44,14 @@ export class EmployeeEdit implements OnInit {
       role: [xp.role, Validators.required],
       years: [xp.years, [Validators.required, Validators.min(1)]],
     });
+  }
+
+  addExperience(): void {
+    this.experiencesArray.push(this.createExperienceGroup({ company: '', role: '', years: 0 }));
+  }
+
+  removeExperience(index: number): void {
+    this.experiencesArray.removeAt(index);
   }
 
   ngOnInit(): void {
@@ -65,5 +73,22 @@ export class EmployeeEdit implements OnInit {
     return this.employeeForm.get('experiences') as FormArray;
   }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    if (this.employeeForm.invalid) return this.employeeForm.markAllAsTouched();
+
+    const formValue = this.employeeForm.value;
+
+    // Checked skills needs to convert back to skills list
+    const selectedSkills = this.skills.filter((_, i) => formValue.skills[i]);
+
+    const employee: Employee = {
+      ...formValue,
+      skills: selectedSkills,
+    };
+
+    this.employee.saveEmployee(employee).subscribe((saved) => {
+      console.log('Employee saved:', saved);
+      alert('Success');
+    });
+  }
 }

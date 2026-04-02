@@ -1,4 +1,4 @@
-<form class="employee-form" [formGroup]="employeeForm">
+<form class="employee-form" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
   <h2>Edit Employee Details</h2>
   @defer {
     <label>
@@ -19,13 +19,11 @@
         <option [value]="department">{{ department }}</option>
       }
     </select>
-    <div formArrayName="experiences">
-      @for (exp of experiencesArray.controls; track exp; let i = $index) {
-        <div [formGroupName]="i">
-          <input type="text" formControlName="company" />
-          <input type="text" formControlName="role" />
-          <input type="number" formControlName="years" />
-        </div>
+    <div formArrayName="skills">
+      @for (skill of skills; track skill; let i = $index) {
+        <input type="checkbox" [formControlName]="i" />
+        <label>{{ skill }}</label
+        ><br />
       }
     </div>
     <div formArrayName="experiences">
@@ -54,7 +52,9 @@
             <span class="error">Minimum 1 year of experience required</span>
           }
         </div>
+        <button (click)="removeExperience(i)">Remove This Experience</button>
       }
+      <button (click)="addExperience()">Add experience</button>
     </div>
   } @loading (after 100ms; minimum 1s) {
     <p>Loading ... Please wait</p>
@@ -63,4 +63,5 @@
   } @error {
     <p>Failed to load component.</p>
   }
+  <button type="submit">Submit</button>
 </form>

@@ -13,13 +13,11 @@
         <option [value]="department">{{ department }}</option>
       }
     </select>
-    <div formArrayName="experiences">
-      @for (exp of experiencesArray.controls; track exp; let i = $index) {
-        <div [formGroupName]="i">
-          <input type="text" formControlName="company" />
-          <input type="text" formControlName="role" />
-          <input type="number" formControlName="years" />
-        </div>
+    <div formArrayName="skills">
+      @for (skill of skills; track skill; let i = $index) {
+        <input type="checkbox" [formControlName]="i" />
+        <label>{{ skill }}</label
+        ><br />
       }
     </div>
     <div formArrayName="experiences">
